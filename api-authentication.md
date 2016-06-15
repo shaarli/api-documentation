@@ -14,4 +14,4 @@
 2. get a token from the shaarli webinterface or
 3. do a full cycle auth with uid+pwd and e.g. HTTP Digest, OAuth2 or Kerberos.
 
-I'd propose 2., salt the token and send it in a custom HTTP Request Header, e.g. `SHAARLI_SALTED_AUTH_TOKEN`
+I'd propose 2., salt the token and send it in a custom HTTP Request Header, e.g. `SHAARLI_SALTED_AUTH_TOKEN`. It's simple on server and client but a little ugly to set up for testing (no api call to get the token).
