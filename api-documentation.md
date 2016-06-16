@@ -219,3 +219,176 @@ $.ajax({
   }
 });
 ```
+
+## **POST link**
+
+Create a new link.
+
+* **URL**: Endpoint discussion in #7.
+* **Method:** `POST`
+* **Path Parameters:** none
+* **URL Parameters:** none
+* **Body Parameters:**
+
+  **Required:**
+    * **url** (string URL format): Shaared URL.
+    * **title** (string): Link title.  
+
+  **Optional:**
+    * **description** (string): Text describing the link.
+    * **tags** (array): list of tags associated to the link.
+    * **private** (boolean): set the link as private (default depending on user configuration).
+
+  **Example:** 
+    ```json
+    { 
+      "url": "http://ShaaredURL.com",
+      "title": "link title",
+      "description": "link description",
+      "tags": [
+        "shaarli",
+        "php",
+        "api"
+      ],
+      "private": true
+    }
+    ```
+
+* **Success Response:** `200`  
+  **Content:** created link
+    ```json
+    { 
+      "id": "linkID",
+      "url": "http://ShaaredURL.com",
+      "title": "link title",
+      "description": "link description",
+      "tags": [
+        "shaarli",
+        "php",
+        "api"
+      ],
+      "private": true,
+      "created": "2016-06-15T19:23:14+0200",
+      "updated": "not implemented yet"
+    }
+    ```
+ 
+* **Error Response:**
+  - `400`: Invalid parameters
+
+    **Content:**
+    ```json
+    { "message": "URL is required." }
+    ```
+  - `401`: Invalid token/authentication.
+  - `409`: Conflict. A link with this URL already exists.
+
+    **Content:** existing link  
+    ```json
+    { 
+      "id": "linkID",
+      "url": "http://ShaaredURL.com",
+      "title": "link title",
+      "description": "link description",
+      "tags": [
+        "shaarli",
+        "php",
+        "api"
+      ],
+      "private": true,
+      "created": "2016-06-15T19:23:14+0200",
+      "updated": "not implemented yet"
+    }
+    ```
+* **Sample Call:**
+
+```javascript
+var formData = { 
+      "id": "linkID",
+      "url": "http://ShaaredURL.com",
+      "title": "link title",
+      "description": "link description",
+      "tags": [
+        "shaarli",
+        "php",
+        "api"
+      ],
+      "private": true,
+      "created": "2016-06-15T19:23:14+0200",
+      "updated": "not implemented yet"
+    };
+$.ajax({
+  url: "[See #7]",
+  type : "POST",
+  data : formData,
+  success : function(r) {
+    console.log(r);
+  }
+});
+```
+
+## **GET log**
+
+Retrieve user actions history.
+
+* **URL**: Endpoint discussion in #7.
+* **Method:** `GET`
+* **Path Parameters:** none
+* **URL Parameters**
+
+   **Optional:**
+ 
+    * `offset=[numeric]`
+      Offset from which to start listing the log (default: 0).
+    * `limit=[numeric]`
+      Number of log items to retrieve (default 20) or `all`.
+      
+* **Body Parameters:** none
+* **Success Response:** `200`
+  **Content:** 
+    ```json
+    [
+      {
+        "action": "SETTINGS_UPDATED",
+        "datetime": "2016-06-15T19:23:14+0200"
+      },
+      { 
+        "action": "CREATED",
+        "link_id": "linkid",
+        "datetime": "2016-06-15T19:23:14+0200"
+      },
+      {
+        "action": "UPDATED",
+        "link_id": "linkid",
+        "datetime": "2016-06-15T19:23:14+0200"
+      },
+      {
+        "action": "DELETED",
+        "link_id": "linkid",
+        "datetime": "2016-06-15T19:23:14+0200"
+      }      
+    ]
+    ```
+  **Notes**: 
+    * Dates use ISO8601 format.
+ 
+* **Error Response:**
+  - `400`: Invalid parameters
+
+    **Content:**
+    ```json
+    { "message": "Offset should be an integer." }
+    ```
+  - `401`: Invalid token/authentication.
+
+* **Sample Call:**
+
+```javascript
+$.ajax({
+  url: "[See #7]",
+  type : "GET",
+  success : function(r) {
+    console.log(r);
+  }
+});
+```
