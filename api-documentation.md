@@ -68,3 +68,62 @@ $.ajax({
   }
 });
 ```
+
+## **GET link**
+
+Retrieve a single link by its ID.
+
+* **URL**: Endpoint discussion in #7.
+* **Method:** `GET`
+* **Path Parameters:**
+   
+    **Required:**
+
+      * `[string]`
+        Link ID.
+
+* **URL Parameters:** none
+* **Body Parameters:** none
+
+* **Success Response:** `200`
+  **Content:** 
+    ```json
+    [
+      { 
+        "id": "linkID",
+        "url": "Shaared URL",
+        "title": "link title",
+        "description": "link description",
+        "tags": [
+          "shaarli",
+          "php",
+          "api"
+        ],
+        "private": true,
+        "created": "2016-06-15T19:23:14+0200",
+        "updated": "not implemented yet"
+      }
+    ]
+    ```
+  **Notes**: 
+    * Dates use ISO8601 format.
+ 
+* **Error Response:**
+  - `401`: Invalid token/authentication.
+  - `404`: Link not found
+    Content:
+    ```json
+    { "message": "Link ID 'foobar' does not exist." }
+    ```
+* **Sample Call:**
+
+```javascript
+$.ajax({
+  url: "[See #7]/20160615_180000",
+  type : "GET",
+  success : function(r) {
+    console.log(r);
+  }
+});
+```
+
