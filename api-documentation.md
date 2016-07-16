@@ -1,394 +1,217 @@
 # Shaarli API Documentation
 
-> Note: using [this markdown template](https://gist.github.com/iros/3426278).
+[Shaarli](https://github.com/shaarli/Shaarli)'s REST API.
 
-## **GET links**
+This documentation is written according to [API Blueprint specification](https://github.com/apiaryio/api-blueprint).
 
-Retrieve a list of links ordered by creation date.
+> Note: all requests reaching described services must include a valid JWT token in the HTTP header. See [TODO]() for more informations.
 
-* **URL**: Endpoint discussion in #3.
-* **Method:** `GET`
-* **Path Parameters:** none
-* **URL Parameters**
+# Group Links
 
-   **Optional:**
+Links
+
+## Links Collection [/links{?offset,limit,searchterm,searchtags,private}]
+
+### List All Links [GET]
+
+Retrieve a list of links ordered by creation date, eventually filtered with parameters.
+
+An empty array will be returned if no link is found with the filters provided. 
+
++ Parameters
+    * offset: 40 (number, optional) -  Offset from which to start listing links (default: 0)
+    * limit: 25 (number, optional) - Number of links to retrieve (default 20) or `all`.  
+    Note: using `all` can be very resource consuming with a big database, use it carefully.
+    * searchterm: shaarli+api (string, optional) - Search terms across all links fields (url encoded string)
+    * searchtags: rest+http (string, optional) - Search for specifics tags. Tag list should be separated by a `+` delimitor.
+    * private: true (boolean) - Only fetch private links.
+
++ Response 200
+  
+    + Attributes (array[Link])
+
++ Response 400
+
+    + Attributes (Error400)
+
++ Response 401
+
+    + Attributes (Error401)
  
-    * `offset=[numeric]`
-      Offset from which to start listing links (default: 0).
-    * `limit=[numeric]`
-      Number of links to retrieve (default 20) or `all`.
-    * `searchterm=[string]`
-      Search terms across all links fields.
-    * `searchtags=[string]`
-      Search for specifics tags. Tag list should be separated by a `+` delimitor.
-* **Body Parameters:** none
+### Create a New Link [POST]
 
-* **Success Response:** `200`
-  **Content:** 
-    ```json
-    [
-      { 
-        "id": "linkID",
-        "url": "Shaared URL",
-        "title": "link title",
-        "description": "link description",
-        "tags": [
-          "shaarli",
-          "php",
-          "api"
-        ],
-        "private": true,
-        "created": "2016-06-15T19:23:14+0200",
-        "updated": "not implemented yet"
-      },
-      {
-        <...>
-      }
-    ]
-    ```
-  **Notes**: 
-    * Dates use ISO8601 format.
- 
-* **Error Response:**
-  - `400`: Invalid parameters  
-    Content:
-    ```json
-    { "message": "Offset should be an integer." }
-    ```
-  - `401`: Invalid token/authentication.
+Create a new Link with provided request data.
 
-* **Sample Call:**
+Note that the shaared URL must not exists. If none is provided, a note will be created (self linked shaare).
 
-```javascript
-$.ajax({
-  url: "[See #3]&offset=60&limit=30",
-  type : "GET",
-  success : function(r) {
-    console.log(r);
-  }
-});
-```
++ Request (application/json)
 
-## **GET link**
+    + Attributes (LinkRequest)
 
-Retrieve a single link by its ID.
++ Response 201
 
-* **URL**: Endpoint discussion in #7.
-* **Method:** `GET`
-* **Path Parameters:**
-   
-    **Required:**
+  The new link has been created, sending a redirection to the new link in `Location` header.
 
-      * `[string]`
-        Link ID.
+  + Headers
 
-* **URL Parameters:** none
-* **Body Parameters:** none
+            Location: /links/1
 
-* **Success Response:** `200`
-  **Content:** 
-    ```json
-    [
-      { 
-        "id": "linkID",
-        "url": "Shaared URL",
-        "title": "link title",
-        "description": "link description",
-        "tags": [
-          "shaarli",
-          "php",
-          "api"
-        ],
-        "private": true,
-        "created": "2016-06-15T19:23:14+0200",
-        "updated": "not implemented yet"
-      }
-    ]
-    ```
-  **Notes**: 
-    * Dates use ISO8601 format.
- 
-* **Error Response:**
-  - `401`: Invalid token/authentication.
-  - `404`: Link not found
-    Content:
-    ```json
-    { "message": "Link ID 'foobar' does not exist." }
-    ```
-* **Sample Call:**
+  + Attributes (Link)
 
-```javascript
-$.ajax({
-  url: "[See #7]/20160615_180000",
-  type : "GET",
-  success : function(r) {
-    console.log(r);
-  }
-});
-```
++ Response 400
 
-## **PUT link**
+    + Attributes (Error400)
+    
++ Response 401
 
-Edit an existing link by its ID.
+    + Attributes (Error401)
 
-* **URL**: Endpoint discussion in #7.
-* **Method:** `PUT`
-* **Path Parameters:** 
++ Response 409
 
-* **URL Parameters:** none
-* **Body Parameters:**
+    Conflict: another link with the same URL has been found. The existing link is  returned in the body of the response.
 
-  **Required:**
-    * **url** (string URL format): Shaared URL.
-    * **title** (string): Link title.  
+    + Attributes (Link)
 
-  **Optional:**
-    * **description** (string): Text describing the link.
-    * **tags** (array): list of tags associated to the link.
-    * **private** (boolean): set the link as private (default depending on user configuration).
+## Link [/links/{linkID}]
 
-  **Example:** 
-    ```json
-    { 
-      "url": "http://ShaaredURL.com",
-      "title": "link title",
-      "description": "link description",
-      "tags": [
-        "shaarli",
-        "php",
-        "api"
-      ],
-      "private": true
-    }
-    ```
++ Parameters
+    + linkID: `20160606_101010` (string, required) - Link identifier
 
-* **Success Response:** `200`
+### View Link details [GET]
 
-  **Content:** edited link
-    ```json
-    { 
-      "id": "linkID",
-      "url": "http://ShaaredURL.com",
-      "title": "link title",
-      "description": "link description",
-      "tags": [
-        "shaarli",
-        "php",
-        "api"
-      ],
-      "private": true,
-      "created": "2016-06-15T19:23:14+0200",
-      "updated": "not implemented yet"
-    }
-    ```
- 
-* **Error Response:**
-  - `400`: Invalid parameters
++ Response 200
 
-    **Content:**
-    ```json
-    { "message": "URL is required." }
-    ```
-  - `401`: Invalid token/authentication.
-  - `404`: Link ID not found.
-    Content:
-    ```json
-    { "message": "Link ID 'foobar' does not exist." }
-    ```
+      + Attributes (Link)
+    
++ Response 401
 
-* **Sample Call:**
+    + Attributes (Error401)
 
-```javascript
-var formData = { 
-      "url": "http://ShaaredURL.com",
-      "title": "link title",
-      "description": "link description",
-      "tags": [
-        "shaarli",
-        "php",
-        "api"
-      ],
-      "private": true,
-    };
-$.ajax({
-  url: "[See #7]",
-  type : "PUT",
-  data : formData,
-  success : function(r) {
-    console.log(r);
-  }
-});
-```
++ Response 404
 
-## **POST link**
+    + Attributes (Error404)
 
-Create a new link.
+### Update a link [PUT]
 
-* **URL**: Endpoint discussion in #7.
-* **Method:** `POST`
-* **Path Parameters:** none
-* **URL Parameters:** none
-* **Body Parameters:**
+Update an existing link with provided request data. Keep in mind that all link's fields will be updated.
 
-  **Required:**
-    * **url** (string URL format): Shaared URL.
-    * **title** (string): Link title.  
++ Request (application/json)
 
-  **Optional:**
-    * **description** (string): Text describing the link.
-    * **tags** (array): list of tags associated to the link.
-    * **private** (boolean): set the link as private (default depending on user configuration).
+    + Attributes (LinkRequest)
 
-  **Example:** 
-    ```json
-    { 
-      "url": "http://ShaaredURL.com",
-      "title": "link title",
-      "description": "link description",
-      "tags": [
-        "shaarli",
-        "php",
-        "api"
-      ],
-      "private": true
-    }
-    ```
++ Response 200
 
-* **Success Response:** `200`  
-  **Content:** created link
-    ```json
-    { 
-      "id": "linkID",
-      "url": "http://ShaaredURL.com",
-      "title": "link title",
-      "description": "link description",
-      "tags": [
-        "shaarli",
-        "php",
-        "api"
-      ],
-      "private": true,
-      "created": "2016-06-15T19:23:14+0200",
-      "updated": "not implemented yet"
-    }
-    ```
- 
-* **Error Response:**
-  - `400`: Invalid parameters
+  The existing link has been updated.
 
-    **Content:**
-    ```json
-    { "message": "URL is required." }
-    ```
-  - `401`: Invalid token/authentication.
-  - `409`: Conflict. A link with this URL already exists.
+  + Attributes (Link)
 
-    **Content:** existing link  
-    ```json
-    { 
-      "id": "linkID",
-      "url": "http://ShaaredURL.com",
-      "title": "link title",
-      "description": "link description",
-      "tags": [
-        "shaarli",
-        "php",
-        "api"
-      ],
-      "private": true,
-      "created": "2016-06-15T19:23:14+0200",
-      "updated": "not implemented yet"
-    }
-    ```
-* **Sample Call:**
++ Response 400
 
-```javascript
-var formData = { 
-      "id": "linkID",
-      "url": "http://ShaaredURL.com",
-      "title": "link title",
-      "description": "link description",
-      "tags": [
-        "shaarli",
-        "php",
-        "api"
-      ],
-      "private": true,
-      "created": "2016-06-15T19:23:14+0200",
-      "updated": "not implemented yet"
-    };
-$.ajax({
-  url: "[See #7]",
-  type : "POST",
-  data : formData,
-  success : function(r) {
-    console.log(r);
-  }
-});
-```
+    + Attributes (Error400)
+    
++ Response 401
 
-## **GET log**
+    + Attributes (Error401)
 
-Retrieve user actions history.
++ Response 404
 
-* **URL**: Endpoint discussion in #7.
-* **Method:** `GET`
-* **Path Parameters:** none
-* **URL Parameters**
+    + Attributes (Error404)
 
-   **Optional:**
- 
-    * `offset=[numeric]`
-      Offset from which to start listing the log (default: 0).
-    * `limit=[numeric]`
-      Number of log items to retrieve (default 20) or `all`.
-      
-* **Body Parameters:** none
-* **Success Response:** `200`
-  **Content:** 
-    ```json
-    [
-      {
-        "action": "SETTINGS_UPDATED",
-        "datetime": "2016-06-15T19:23:14+0200"
-      },
-      { 
-        "action": "CREATED",
-        "link_id": "linkid",
-        "datetime": "2016-06-15T19:23:14+0200"
-      },
-      {
-        "action": "UPDATED",
-        "link_id": "linkid",
-        "datetime": "2016-06-15T19:23:14+0200"
-      },
-      {
-        "action": "DELETED",
-        "link_id": "linkid",
-        "datetime": "2016-06-15T19:23:14+0200"
-      }      
-    ]
-    ```
-  **Notes**: 
-    * Dates use ISO8601 format.
- 
-* **Error Response:**
-  - `400`: Invalid parameters
++ Response 409
 
-    **Content:**
-    ```json
-    { "message": "Offset should be an integer." }
-    ```
-  - `401`: Invalid token/authentication.
+  Conflict. Given URL already exists for another link, which is returned in the response body.
 
-* **Sample Call:**
+  + Attributes (Link)
 
-```javascript
-$.ajax({
-  url: "[See #7]",
-  type : "GET",
-  success : function(r) {
-    console.log(r);
-  }
-});
-```
+## History [/history{?since,offset,limit}]
+
+### Get last user actions [GET]
+
+Retrieve the last actions made by the user, even in the web version, including:
+
+  - `CREATED`: A new link has been created.
+  - `UPDATED`: An existing link has been updated.
+  - `DELETED`: A link has been deleted.
+  - `SETTINGS`: Shaarli settings have been updated.
+
+> This service can be useful to maintain a local database.
+
++ Parameters
+
+    + since: `2015-05-05T12:30:00` (string, optional) - Get all event since this datetime (format ISO ISO8601).
+    + offset: 40 (number, optional) -  Offset from which to start listing links (default: 0). *Incompatible with `since` parameter.*
+    + limit: 25 (number, optional) - Number of links to retrieve (default 20) or `all`.  *Incompatible with `since` parameter.*
+
++ Response 200
+
+    + Attributes (array[History])
+
++ Response 400
+
+    + Attributes (Error400)
+    
++ Response 401
+
+    + Attributes (Error401)
+
+## Instance information [/infos]
+
+### Get instance info [GET]
+
+Return a list of information and settings for the Shaarli instance.
+
++ Response 401
+
+    + Attributes (Error401)
+
++ Response 200
+
+    + Attribute (Info)
+
+## Data Structures
+
+### Link
++ id: 20160606_101010 (string) - Link identifier
++ url: http://foo.bar (string) - Link URL
++ title: Link title (string)   - Link  title
++ description (string)         - Link description
++ tags: foo, bar (array[string]) - List of tags associated with the link
++ private: false (boolean)     - This flag is set to true when a link is private
++ created: `2015-05-05T12:30:00` (string) - Creation datetime in ISO8601 format
++ updated: `` (string) - NOT IMPLEMENTED YET. Link last update date.
+
+### LinkRequest
++ url: http://foo.bar (string, optional)   - Link URL
++ title: Link title (string, required)     - Link  title
++ description (string, optional)           - Link description
++ tags: foo, bar (array[string], optional) - List of tags associated with the link
++ private: false (boolean, optional)       - This flag is set to true when a link is private
+
+### History
++ event: CREATED (string, required) - An event code matching a user action.
++ datetime: `2015-05-05T12:30:00` (string, required) - Event datetime in ISO8601 format
++ id: `20160606_101010` (string, optional) - Identifier of the logged event (e.g.: created link ID). 
+
+### Info
++ global_counter: 654 (number, required) - Number of links stored in this Shaarli instance (private and public)
++ private_counter: 123 (number, required) - Number of private links stored
++ settings (Settings)
+
+### Settings
++ title: My links (string) - Shaarli's instance title.
++ header_link: https://foo.bar/shaarli (string) - Link to the homepage.
++ timezone: Europe/Paris (string) - Shaarli's instance timezone.
++ enabled_plugins: qrcode, markdown (array[string]) - List of enabled plugins.
++ default_private_links: true (boolean) - Check the private checkbox by default for every new link.
+
+### Error400
++ code: 400 (number)
++ message: Invalid parameters (string)
+
+### Error401
++ code: 401 (number)
++ message: Not authorized (string)
+
+### Error404
++ code: 404 (number)
++ message: Not found (string)
