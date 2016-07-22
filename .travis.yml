@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - stable
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-5
+    - g++-5
+
+before_script:
+  - npm install -g aglio
+script:
+  - bash ./deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: "91dc7b3864c4"
+  - COMMIT_AUTHOR_EMAIL: "shaarli@hoa.ro"
+  - CC: "gcc-5"
+  - CXX: "g++-5"
+  - LINK: "gcc-5"
+  - LINKXX: "g++-5"
+
+  

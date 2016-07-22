@@ -1,0 +1,2 @@
+# Shaarli API Authentication
+
