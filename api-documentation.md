@@ -154,7 +154,7 @@ Retrieve the last actions made by the user, even in the web version, including:
 
     + Attributes (Error401)
 
-## Instance information [/infos]
+## Instance information [/info]
 
 ### Get instance info [GET]
 
