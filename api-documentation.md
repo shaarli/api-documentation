@@ -174,8 +174,9 @@ Return a list of information and settings for the Shaarli instance.
 ## Data Structures
 
 ### Link
-+ id: 20160606_101010 (string) - Link identifier
++ id: 345 (int)                - Link identifier
 + url: http://foo.bar (string) - Link URL
++ shorturl: 1H3Srg (string)    - Link permalink short URL
 + title: Link title (string)   - Link  title
 + description (string)         - Link description
 + tags: foo, bar (array[string]) - List of tags associated with the link
