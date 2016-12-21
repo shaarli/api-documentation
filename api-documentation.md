@@ -4,6 +4,9 @@
 
 This documentation is written according to [API Blueprint specification](https://github.com/apiaryio/api-blueprint).
 
+ * HTML version: https://shaarli.github.io/api-documentation/
+ * Git repository: https://github.com/shaarli/api-documentation
+
 > Note: all requests reaching described services must include a valid JWT token in the HTTP header. See [TODO]() for more informations.
 
 # Group Links
