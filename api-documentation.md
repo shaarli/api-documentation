@@ -174,7 +174,7 @@ Return a list of information and settings for the Shaarli instance.
 ## Data Structures
 
 ### Link
-+ id: 345 (int)                - Link identifier
++ id: 345 (number)             - Link identifier
 + url: http://foo.bar (string) - Link URL
 + shorturl: 1H3Srg (string)    - Link permalink short URL
 + title: Link title (string)   - Link  title
