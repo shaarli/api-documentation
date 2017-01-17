@@ -13,7 +13,7 @@ This documentation is written according to [API Blueprint specification](https:/
 
 Links
 
-## Links Collection [/links{?offset,limit,searchterm,searchtags,private}]
+## Links Collection [/links{?offset,limit,searchterm,searchtags,visibility}]
 
 ### List All Links [GET]
 
@@ -27,7 +27,8 @@ An empty array will be returned if no link is found with the filters provided.
     Note: using `all` can be very resource consuming with a big database, use it carefully.
     * searchterm: shaarli+api (string, optional) - Search terms across all links fields (url encoded string)
     * searchtags: rest+http (string, optional) - Search for specifics tags. Tag list should be separated by a `+` delimitor.
-    * private: true (boolean) - Only fetch private links.
+    * visibility: `private` (string, optional) - Filter links by visibility. 
+    Allowed values: `all`, `private`, `public` (default: `all`).
 
 + Response 200
   
