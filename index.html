@@ -9,7 +9,15 @@
 </li>
 </ul>
 <blockquote>
-<p>Note: all requests reaching described services must include a valid JWT token in the HTTP header. See <a href="">TODO</a> for more informations.</p>
+<p>Note: all requests reaching described services must include a valid JWT token in the HTTP header. The signature must use SHA512 encryption algorithm.</p>
+<p>The header must have use the following syntax:</p>
+<pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer &lt;token&gt;</span></code></pre>
+<p>Resources:</p>
+<ul>
+<li><a href="https://jwt.io">jwt.io</a> and associated libraries</li>
+<li><a href="https://github.com/shaarli/python-shaarli-client">Python Client</a></li>
+<li><a href="https://gist.github.com/ArthurHoaro/0d1bdbbaeb42c52470c745f8ac6e44f1">PHP token generation example</a></li>
+</ul>
 </blockquote>
 <section id="links" class="resource-group"><h2 class="group-heading">Links <a href="#links" class="permalink">&para;</a></h2><p>Links</p>
 <div id="links-links-collection" class="resource"><h3 class="resource-heading">Links Collection <a href="#links-links-collection" class="permalink">&nbsp;&para;</a></h3><div id="links-links-collection-get" class="action get"><h4 class="action-heading"><div class="name">List All Links</div><a href="#links-links-collection-get" class="method get">GET</a><code class="uri">/links{?offset,limit,searchterm,searchtags,visibility}</code></h4><p>Retrieve a list of links ordered by creation date, eventually filtered with parameters.</p>
