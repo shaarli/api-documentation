@@ -78,7 +78,7 @@ Note that the shaared URL must not exists. If none is provided, a note will be c
 ## Link [/links/{linkID}]
 
 + Parameters
-    + linkID: `20160606_101010` (string, required) - Link identifier
+    + linkID: `349` (number, required) - Link identifier
 
 ### View Link details [GET]
 
