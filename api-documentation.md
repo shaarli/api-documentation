@@ -7,7 +7,16 @@ This documentation is written according to [API Blueprint specification](https:/
  * HTML version: https://shaarli.github.io/api-documentation/
  * Git repository: https://github.com/shaarli/api-documentation
 
-> Note: all requests reaching described services must include a valid JWT token in the HTTP header. See [TODO]() for more informations.
+> Note: all requests reaching described services must include a valid JWT token in the HTTP header. The signature must use SHA512 encryption algorithm.
+> 
+> The header must have use the following syntax:
+> 
+>     Authorization: Bearer <token>
+> 
+> Resources:
+>   * [jwt.io](https://jwt.io) and associated libraries
+>   * [Python Client](https://github.com/shaarli/python-shaarli-client)
+>   * [PHP token generation example](https://gist.github.com/ArthurHoaro/0d1bdbbaeb42c52470c745f8ac6e44f1)
 
 # Group Links
 
