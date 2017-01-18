@@ -67,7 +67,7 @@ Note that the shaared URL must not exists. If none is provided, a note will be c
 
   + Headers
 
-            Location: /links/1
+            Location: /links/345
 
   + Attributes (Link)
 
