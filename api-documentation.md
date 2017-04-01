@@ -196,7 +196,7 @@ Return a list of information and settings for the Shaarli instance.
 
 ### LinkRequest
 + url: http://foo.bar (string, optional)   - Link URL
-+ title: Link title (string, required)     - Link  title
++ title: Link title (string, optional)     - Link  title
 + description (string, optional)           - Link description
 + tags: foo, bar (array[string], optional) - List of tags associated with the link
 + private: false (boolean, optional)       - This flag is set to true when a link is private
