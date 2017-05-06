@@ -169,7 +169,7 @@ Retrieve the last actions made by the user, even in the web version, including:
 
 + Parameters
 
-    + since: `2015-05-05T12:30:00` (string, optional) - Get all event since this datetime (format ISO ISO8601).
+    + since: `2015-05-05T12:30:00%2B03:00` (string, optional) - Get all event since this datetime (format ISO ISO8601). *Note: the `+` should be encoded to `%2B`*.
     + offset: 40 (number, optional) -  Offset from which to start listing links (default: 0).
     + limit: 25 (number, optional) - Number of links to retrieve (default 20) or `all`.
 
@@ -209,7 +209,7 @@ Return a list of information and settings for the Shaarli instance.
 + description (string)         - Link description
 + tags: foo, bar (array[string]) - List of tags associated with the link
 + private: false (boolean)     - This flag is set to true when a link is private
-+ created: `2015-05-05T12:30:00` (string) - Creation datetime in ISO8601 format
++ created: `2015-05-05T12:30:00+03:00` (string) - Creation datetime in ISO8601 format
 + updated: `` (string) - NOT IMPLEMENTED YET. Link last update date.
 
 ### LinkRequest
@@ -221,8 +221,8 @@ Return a list of information and settings for the Shaarli instance.
 
 ### History
 + event: CREATED (string, required) - An event code matching a user action.
-+ datetime: `2015-05-05T12:30:00` (string, required) - Event datetime in ISO8601 format
-+ id: `20160606_101010` (string, optional) - Identifier of the logged event (e.g.: created link ID). 
++ datetime: `2015-05-05T12:30:00+03:00` (string, required) - Event datetime in ISO8601 format
++ id: `123` (number, optional) - Identifier of the logged event (e.g.: created link ID). 
 
 ### Info
 + global_counter: 654 (number, required) - Number of links stored in this Shaarli instance (private and public)
