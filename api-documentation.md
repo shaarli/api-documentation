@@ -136,6 +136,24 @@ Update an existing link with provided request data. Keep in mind that all link's
 
   + Attributes (Link)
 
+### Delete a link [DELETE]
+
+Delete a link.
+
++ Response 204
+
+  The existing link has been deleted.
+
+   + Body
+ 
++ Response 401
+
+    + Attributes (Error401)
+
++ Response 404
+
+    + Attributes (Error404)
+
 ## History [/history{?since,offset,limit}]
 
 ### Get last user actions [GET]
