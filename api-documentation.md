@@ -170,8 +170,8 @@ Retrieve the last actions made by the user, even in the web version, including:
 + Parameters
 
     + since: `2015-05-05T12:30:00` (string, optional) - Get all event since this datetime (format ISO ISO8601).
-    + offset: 40 (number, optional) -  Offset from which to start listing links (default: 0). *Incompatible with `since` parameter.*
-    + limit: 25 (number, optional) - Number of links to retrieve (default 20) or `all`.  *Incompatible with `since` parameter.*
+    + offset: 40 (number, optional) -  Offset from which to start listing links (default: 0).
+    + limit: 25 (number, optional) - Number of links to retrieve (default 20) or `all`.
 
 + Response 200
 
