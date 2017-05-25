@@ -35,7 +35,7 @@ An empty array will be returned if no link is found with the filters provided.
     * limit: 25 (number, optional) - Number of links to retrieve (default 20) or `all`.  
     Note: using `all` can be very resource consuming with a big database, use it carefully.
     * searchterm: shaarli+api (string, optional) - Search terms across all links fields (url encoded string)
-    * searchtags: rest+http (string, optional) - Search for specifics tags. Tag list should be separated by a `+` delimitor.
+    * searchtags: rest+http (string, optional) - Search for specifics tags. Tag list should be separated by a `+` delimitor. Set it to `false` to retrieve only untagged links.
     * visibility: `private` (string, optional) - Filter links by visibility. 
     Allowed values: `all`, `private`, `public` (default: `all`).
 
