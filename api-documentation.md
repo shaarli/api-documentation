@@ -154,6 +154,96 @@ Delete a link.
 
     + Attributes (Error404)
 
+
+## Tags Collection [/tags{?offset,limit}]
+
+### List All Tags [GET]
+
+Retrieve a list of tags ordered by usage.
+
+An empty array will be returned if no tag is found with the filters provided. 
+
++ Parameters
+    * offset: 40 (number, optional) -  Offset from which to start listing tags (default: 0)
+    * limit: 25 (number, optional) - Number of tags to retrieve (default `all`).  
+
++ Response 200
+  
+    + Attributes (array[Tag])
+
++ Response 400
+
+    + Attributes (Error400)
+
++ Response 401
+
+    + Attributes (Error401)
+
+## Tag [/tags/{tagName}]
+
++ Parameters
+    + tagName: `tutorial` (string, required) - Tag name
+
+### Get a tag [GET]
+
+Retrieve a single tag details.
+
++ Response 200
+
+      + Attributes (Tag)
+    
++ Response 401
+
+    + Attributes (Error401)
+
++ Response 404
+
+    + Attributes (Error404)
+
+### Update a tag [PUT]
+
+Rename a tag from the given name. If the new name you provide is match an existing tag, they will be merged.
+
++ Request (application/json)
+
+    + Attributes (TagRequest)
+
++ Response 200
+
+  The existing tag has been updated.
+
+  + Attributes (Tag)
+
++ Response 400
+
+    + Attributes (Error400)
+    
++ Response 401
+
+    + Attributes (Error401)
+
++ Response 404
+
+    + Attributes (Error404)
+
+### Delete a tag [DELETE]
+
+Delete a tag from every link where it is used.
+
++ Response 204
+
+  The existing tag has been deleted.
+
+   + Body
+ 
++ Response 401
+
+    + Attributes (Error401)
+
++ Response 404
+
+    + Attributes (Error404)
+
 ## History [/history{?since,offset,limit}]
 
 ### Get last user actions [GET]
@@ -235,6 +325,13 @@ Return a list of information and settings for the Shaarli instance.
 + timezone: Europe/Paris (string) - Shaarli's instance timezone.
 + enabled_plugins: qrcode, markdown (array[string]) - List of enabled plugins.
 + default_private_links: true (boolean) - Check the private checkbox by default for every new link.
+
+### Tag
++ name: Tutorial (string, required) - Name of the tag
++ occurences: 47 (number, optional) - Number of links using this tag
+
+### TagRequest
++ name: music (string, required) - Name of the tag
 
 ### Error400
 + code: 400 (number)
