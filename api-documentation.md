@@ -202,7 +202,7 @@ Retrieve a single tag details.
 
 ### Update a tag [PUT]
 
-Rename a tag from the given name. If the new name you provide is match an existing tag, they will be merged.
+Rename a tag from the given name. If the new name you provide matches an existing tag, they will be merged.
 
 + Request (application/json)
 
