@@ -155,17 +155,20 @@ Delete a link.
     + Attributes (Error404)
 
 
-## Tags Collection [/tags{?offset,limit}]
+## Tags Collection [/tags{?offset,limit,visibility}]
 
 ### List All Tags [GET]
 
-Retrieve a list of tags ordered by usage.
+Retrieve a list of tags ordered by usage. Provided and returned tag names are case insensitive,
+meaning that the occurrences count for `Tag` and `tag` are added.
 
 An empty array will be returned if no tag is found with the filters provided. 
 
 + Parameters
     * offset: 40 (number, optional) -  Offset from which to start listing tags (default: 0)
-    * limit: 25 (number, optional) - Number of tags to retrieve (default `all`).  
+    * limit: 25 (number, optional) - Number of tags to retrieve (default `all`).
+    * visibility: `private` (string, optional) - Filter links by visibility. 
+    Allowed values: `all`, `private`, `public` (default: `all`).
 
 + Response 200
   
@@ -186,7 +189,8 @@ An empty array will be returned if no tag is found with the filters provided.
 
 ### Get a tag [GET]
 
-Retrieve a single tag details.
+Retrieve a single tag details. Provided and returned tag names are case insensitive,
+meaning that the occurrences count for `Tag` and `tag` are added.
 
 + Response 200
 
@@ -203,6 +207,8 @@ Retrieve a single tag details.
 ### Update a tag [PUT]
 
 Rename a tag from the given name. If the new name you provide matches an existing tag, they will be merged.
+
+Provided tag name is case sensitive.
 
 + Request (application/json)
 
@@ -229,6 +235,8 @@ Rename a tag from the given name. If the new name you provide matches an existin
 ### Delete a tag [DELETE]
 
 Delete a tag from every link where it is used.
+
+Provided tag name is case sensitive.
 
 + Response 204
 
