@@ -7,6 +7,9 @@ This documentation is written according to [API Blueprint specification](https:/
  * HTML version: https://shaarli.github.io/api-documentation/
  * Git repository: https://github.com/shaarli/api-documentation
 
+All endpoints described in this documentation must be prefixed with `/api/v1/`.  
+Example: `GET http://shaarli.domain.tld/api/v1/info`
+
 > Note: all requests reaching described services must include a valid JWT token in the HTTP header. The signature must use SHA512 encryption algorithm.
 > 
 > The header must have use the following syntax:
