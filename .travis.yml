@@ -15,7 +15,7 @@ script:
   - bash ./deploy.sh
 env:
   global:
-  - ENCRYPTION_LABEL: "91dc7b3864c4"
+  - ENCRYPTION_LABEL: "8ebb1ef83f64"
   - COMMIT_AUTHOR_EMAIL: "shaarli@hoa.ro"
   - CC: "gcc-5"
   - CXX: "g++-5"
