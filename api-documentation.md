@@ -311,7 +311,7 @@ Return a list of information and settings for the Shaarli instance.
 + tags: foo, bar (array[string]) - List of tags associated with the link
 + private: false (boolean)     - This flag is set to true when a link is private
 + created: `2015-05-05T12:30:00+03:00` (string) - Creation datetime in ISO8601 format
-+ updated: `` (string) - NOT IMPLEMENTED YET. Link last update date.
++ updated: `2015-05-06T14:30:00+03:00` (string) - Link last update date in ISO8601 format
 
 ### LinkRequest
 + url: http://foo.bar (string, optional)   - Link URL
@@ -319,6 +319,8 @@ Return a list of information and settings for the Shaarli instance.
 + description (string, optional)           - Link description
 + tags: foo, bar (array[string], optional) - List of tags associated with the link
 + private: false (boolean, optional)       - This flag is set to true when a link is private
++ created: `2015-05-05T12:30:00+03:00` (string) - Creation datetime in ISO8601 format
++ updated: `2015-05-06T14:30:00+03:00` (string) - Link last update date in ISO8601 format
 
 ### History
 + event: CREATED (string, required) - An event code matching a user action.
