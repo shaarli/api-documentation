@@ -44,7 +44,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     ]</span>,
     "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
     "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-05T12:30:00+03:00"</span></span>,
-    "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"``"</span>
+    "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-06T14:30:00+03:00"</span>
   </span>}
 ]</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
@@ -88,7 +88,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
       </span>}</span>,
       "<span class="hljs-attribute">updated</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"NOT IMPLEMENTED YET. Link last update date."</span>
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Link last update date in ISO8601 format"</span>
       </span>}
     </span>}
   </span>}</span>,
@@ -131,7 +131,9 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     <span class="hljs-string">"foo"</span>,
     <span class="hljs-string">"bar"</span>
   ]</span>,
-  "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+  "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-05T12:30:00+03:00"</span></span>,
+  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-06T14:30:00+03:00"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -155,6 +157,14 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     "<span class="hljs-attribute">private</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"This flag is set to true when a link is private"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">created</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Creation datetime in ISO8601 format"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">updated</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Link last update date in ISO8601 format"</span>
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>201</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p>The new link has been created, sending a redirection to the new link in <code>Location</code> header.</p>
@@ -170,7 +180,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
   ]</span>,
   "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
   "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-05T12:30:00+03:00"</span></span>,
-  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"``"</span>
+  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-06T14:30:00+03:00"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
@@ -211,7 +221,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     </span>}</span>,
     "<span class="hljs-attribute">updated</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"NOT IMPLEMENTED YET. Link last update date."</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Link last update date in ISO8601 format"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -256,7 +266,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
   ]</span>,
   "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
   "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-05T12:30:00+03:00"</span></span>,
-  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"``"</span>
+  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-06T14:30:00+03:00"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
@@ -297,7 +307,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     </span>}</span>,
     "<span class="hljs-attribute">updated</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"NOT IMPLEMENTED YET. Link last update date."</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Link last update date in ISO8601 format"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -314,7 +324,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
   ]</span>,
   "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
   "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-05T12:30:00+03:00"</span></span>,
-  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"``"</span>
+  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-06T14:30:00+03:00"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
@@ -355,7 +365,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     </span>}</span>,
     "<span class="hljs-attribute">updated</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"NOT IMPLEMENTED YET. Link last update date."</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Link last update date in ISO8601 format"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -397,7 +407,9 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     <span class="hljs-string">"foo"</span>,
     <span class="hljs-string">"bar"</span>
   ]</span>,
-  "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
+  "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-05T12:30:00+03:00"</span></span>,
+  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-06T14:30:00+03:00"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -421,6 +433,14 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     "<span class="hljs-attribute">private</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"This flag is set to true when a link is private"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">created</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Creation datetime in ISO8601 format"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">updated</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Link last update date in ISO8601 format"</span>
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p>The existing link has been updated.</p>
@@ -436,7 +456,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
   ]</span>,
   "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
   "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-05T12:30:00+03:00"</span></span>,
-  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"``"</span>
+  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-06T14:30:00+03:00"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
@@ -477,7 +497,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     </span>}</span>,
     "<span class="hljs-attribute">updated</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"NOT IMPLEMENTED YET. Link last update date."</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Link last update date in ISO8601 format"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -536,7 +556,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
   ]</span>,
   "<span class="hljs-attribute">private</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
   "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-05T12:30:00+03:00"</span></span>,
-  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"``"</span>
+  "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"2015-05-06T14:30:00+03:00"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
@@ -577,7 +597,7 @@ Allowed values: <code>all</code>, <code>private</code>, <code>public</code> (def
     </span>}</span>,
     "<span class="hljs-attribute">updated</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"NOT IMPLEMENTED YET. Link last update date."</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Link last update date in ISO8601 format"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
@@ -984,7 +1004,7 @@ meaning that the occurrences count for <code>Tag</code> and <code>tag</code> are
     <span class="hljs-string">"private_counter"</span>
   ]</span>,
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 18 Jul 2018</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 29 Aug 2020</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
