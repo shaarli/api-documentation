@@ -338,6 +338,7 @@ Return a list of information and settings for the Shaarli instance.
 + timezone: Europe/Paris (string) - Shaarli's instance timezone.
 + enabled_plugins: qrcode, markdown (array[string]) - List of enabled plugins.
 + default_private_links: true (boolean) - Check the private checkbox by default for every new link.
++ tags_separator: " " (string) - String delimitator for tags, as configured on the Shaarli instance.
 
 ### Tag
 + name: Tutorial (string, required) - Name of the tag
