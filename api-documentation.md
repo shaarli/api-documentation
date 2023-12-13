@@ -342,7 +342,7 @@ Return a list of information and settings for the Shaarli instance.
 
 ### Tag
 + name: Tutorial (string, required) - Name of the tag
-+ occurences: 47 (number, optional) - Number of links using this tag
++ occurrences: 47 (number, optional) - Number of links using this tag
 
 ### TagRequest
 + name: music (string, required) - Name of the tag
